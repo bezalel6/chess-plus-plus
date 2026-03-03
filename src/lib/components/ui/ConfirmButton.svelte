@@ -1,0 +1,99 @@
+<script lang="ts">
+	import type { Snippet } from 'svelte';
+
+	let {
+		onconfirm,
+		class: className = '',
+		children
+	}: {
+		onconfirm: () => void;
+		class?: string;
+		children?: Snippet;
+	} = $props();
+
+	let confirming = $state(false);
+
+	function handleClick() {
+		confirming = true;
+	}
+
+	function handleConfirm() {
+		confirming = false;
+		onconfirm();
+	}
+
+	function handleCancel() {
+		confirming = false;
+	}
+</script>
+
+{#if confirming}
+	<div class="confirm-wrapper {className}">
+		<button type="button" onclick={handleConfirm} class="confirm-yes">
+			✓
+		</button>
+		<button type="button" onclick={handleCancel} class="confirm-no">
+			✗
+		</button>
+	</div>
+{:else}
+	<button type="button" onclick={handleClick} class={className}>
+		{@render children?.()}
+	</button>
+{/if}
+
+<style>
+	/* Wrapper inherits parent button styles via className, then overrides specific properties */
+	.confirm-wrapper {
+		display: flex !important;
+		align-items: center;
+		justify-content: center;
+		gap: 0.75rem;
+		border: 2px solid #facc15 !important;
+		animation: slideIn 0.2s ease-out;
+	}
+
+	@keyframes slideIn {
+		from {
+			opacity: 0;
+			transform: scale(0.95);
+		}
+		to {
+			opacity: 1;
+			transform: scale(1);
+		}
+	}
+
+	.confirm-yes,
+	.confirm-no {
+		flex: 1;
+		padding: 0;
+		border-radius: 0.375rem;
+		font-weight: 600;
+		font-size: inherit;
+		cursor: pointer;
+		transition: all 0.2s;
+		border: none;
+		min-width: 0;
+	}
+
+	.confirm-yes {
+		background-color: #4ade80;
+		color: #1e1e1e;
+	}
+
+	.confirm-yes:hover {
+		background-color: #22c55e;
+		transform: translateY(-1px);
+	}
+
+	.confirm-no {
+		background-color: #404040;
+		color: #e8e8e8;
+	}
+
+	.confirm-no:hover {
+		background-color: #505050;
+		transform: translateY(-1px);
+	}
+</style>

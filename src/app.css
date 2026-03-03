@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+/* Global styles */
+body {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Chessground styles - MUST BE IN THIS ORDER */
+/* 1. Base CSS (structure) */
+@import "chessground/assets/chessground.base.css";
+
+/* 2. Piece set CSS (piece images) */
+@import "chessground/assets/chessground.cburnett.css";
+
+/* 3. Dark theme color overrides */
+/* Lichess.org blue theme colors */
+cg-board {
+  background-color: #dee3e6;
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOng9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiCiAgICAgdmlld0JveD0iMCAwIDggOCIgc2hhcGUtcmVuZGVyaW5nPSJjcmlzcEVkZ2VzIj4KPGcgaWQ9ImEiPgogIDxnIGlkPSJiIj4KICAgIDxnIGlkPSJjIj4KICAgICAgPGcgaWQ9ImQiPgogICAgICAgIDxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGlkPSJlIiBmaWxsPSIjZGVlM2U2Ii8+CiAgICAgICAgPHVzZSB4PSIxIiB5PSIxIiBocmVmPSIjZSIgeDpocmVmPSIjZSIvPgogICAgICAgIDxyZWN0IHk9IjEiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGlkPSJmIiBmaWxsPSIjOGNhMmFkIi8+CiAgICAgICAgPHVzZSB4PSIxIiB5PSItMSIgaHJlZj0iI2YiIHg6aHJlZj0iI2YiLz4KICAgICAgPC9nPgogICAgICA8dXNlIHg9IjIiIGhyZWY9IiNkIiB4OmhyZWY9IiNkIi8+CiAgICA8L2c+CiAgICA8dXNlIHg9IjQiIGhyZWY9IiNjIiB4OmhyZWY9IiNjIi8+CiAgPC9nPgogIDx1c2UgeT0iMiIgaHJlZj0iI2IiIHg6aHJlZj0iI2IiLz4KPC9nPgo8dXNlIHk9IjQiIGhyZWY9IiNhIiB4OmhyZWY9IiNhIi8+Cjwvc3ZnPg==');
+}
+
+/* Interactive board square colors - Lichess blue theme */
+cg-board square.move-dest {
+  background: radial-gradient(rgba(20, 85, 30, 0.5) 22%, rgba(20, 85, 30, 0.5) 0, rgba(0, 0, 0, 0.3) 0, rgba(0, 0, 0, 0) 0);
+}
+
+cg-board square.premove-dest {
+  background: radial-gradient(rgba(20, 30, 85, 0.5) 22%, rgba(20, 30, 85, 0.5) 0, rgba(0, 0, 0, 0.3) 0, rgba(0, 0, 0, 0) 0);
+}
+
+cg-board square.oc.move-dest {
+  background: radial-gradient(transparent 0%, transparent 80%, rgba(20, 85, 30, 0.5) 80%);
+}
+
+cg-board square.oc.premove-dest {
+  background: radial-gradient(transparent 0%, transparent 80%, rgba(20, 30, 85, 0.5) 80%);
+}
+
+cg-board square.move-dest:hover {
+  background: rgba(20, 85, 30, 0.5);
+}
+
+cg-board square.premove-dest:hover {
+  background: rgba(20, 30, 85, 0.5);
+}
+
+cg-board square.last-move {
+  background-color: rgba(155, 199, 0, 0.41);
+}
+
+cg-board square.selected {
+  background-color: rgba(20, 85, 30, 0.5);
+}
+
+cg-board square.check {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(230, 0, 0, 1) 0%,
+    rgba(169, 0, 0, 1) 25%,
+    rgba(169, 0, 0, 0) 89%,
+    rgba(169, 0, 0, 0) 100%
+  );
+}
+
+cg-board square.current-premove {
+  background-color: rgba(20, 30, 85, 0.5);
+}
+
+/* Coordinate label colors for dark theme */
+.cg-wrap coords {
+  color: rgba(232, 232, 232, 0.6);
+}
+
+/* Cursor styles for interactive pieces */
+/* Override default board cursor - board itself should not show pointer */
+.cg-wrap.manipulable cg-board {
+  cursor: default;
+}
+
+/* Enable pointer events and show pointer cursor for pieces that belong to the current player */
+[data-turn="w"] piece.white,
+[data-turn="b"] piece.black {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* Show grabbing cursor when actively dragging */
+cg-board piece.dragging {
+  cursor: grabbing !important;
+}
+
+/* Testimonials scrolling animation with GPU acceleration */
+@keyframes scroll-vertical {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+.animate-scroll-vertical {
+  animation: scroll-vertical 40s linear infinite;
+  will-change: transform;
+  /* Force GPU acceleration and prevent subpixel rendering issues */
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* .animate-scroll-vertical:hover {
+  animation-play-state: paused;
+} */
