@@ -1,10 +1,10 @@
-# Chess 2.0 - Claude Code Guidelines
+# Chess Plus Plus - Claude Code Guidelines
 
-Project-specific instructions for working on the Chess 2.0 application.
+Project-specific instructions for working on the Chess Plus Plus application.
 
 ## Project Overview
 
-Chess 2.0 is a modern chess application built with SvelteKit 5 (using runes), TypeScript, and Tailwind CSS v4. The project uses Bun as the package manager and is configured for self-hosting via adapter-node.
+Chess Plus Plus is a modern chess application built with SvelteKit 5 (using runes), TypeScript, and Tailwind CSS v4. The project uses Bun as the package manager and is configured for self-hosting via adapter-node.
 
 ## Tech Stack & Versions
 
@@ -57,7 +57,7 @@ This project uses Tailwind CSS v4 with the Vite plugin. **Use Context7 for lates
 **Correct usage:**
 ```svelte
 <div class="flex items-center justify-center min-h-screen bg-gray-100">
-  <h1 class="text-4xl font-bold text-gray-900">Chess 2.0</h1>
+  <h1 class="text-4xl font-bold text-gray-900">Chess Plus Plus</h1>
 </div>
 ```
 
