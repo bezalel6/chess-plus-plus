@@ -28,11 +28,7 @@ const testimonials = [
 	},
 	{
 		quote: "As long as it has ultrabullet.",
-		author: "— Daniel, Destroyer of Mice",
-	},
-	{
-		quote: "I don't know, this looks kinda sus, not gonna lie.",
-		author: "— Alexandra, Sister",
+		author: "— Daniel, Destroyer of Mice. RIP",
 	},
 	{
 		quote: "It speaks for itself, or something.",
